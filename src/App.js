@@ -5,7 +5,7 @@ import TopStories from './components/TopStories';
 import axios from 'axios';
 
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-let query = "covid19";
+let query = "covid";
 let key = "kyYo208otidmmu0E7303fCGUBy5IbJhV";
 
 class App extends Component {
@@ -37,12 +37,10 @@ class App extends Component {
 render() {
     return (
       <div>
-        <h1>New York Times' Top World News</h1>
-
+        <h1>Local Pulse</h1>
             <Switch>
               <Route exact path='/' render={(props) => <TopStories {...props} stories={this.state.stories} dataReady={this.state.dataReady}/>}></Route>
             </Switch>
-            
       </div>
     );
   }

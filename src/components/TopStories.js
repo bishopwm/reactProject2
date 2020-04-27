@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './TopStories.css';
 
 class TopStories extends Component {
 
@@ -9,21 +10,30 @@ componentDidMount() {
 }
 
 showStories = () => {
+    console.log(this.props.stories)
+    
     let stories = this.props.stories ? this.props.stories : this.props.stories;
-    return <h4>{stories[0].headline.main}</h4>
-}
+    return stories.map((eachStory) => {
+        return (
+            <li className="list-group-item" key={eachStory.pub_date}>
+                <p className="article-headline">{eachStory.headline.main}</p>
+                <p className="article-lead">{eachStory.lead_paragraph}</p>
+            </li>
+        );
+    });
+};
 
 
     render() {
         return (
             <div>
-                Top Stories here...
-                <div>
+                <ul className="list group col-6 article-list">
                     {this.props.dataReady ? this.showStories() : "Loading..."}
-                </div>
+                </ul>
             </div>
         );
     }
 }
 
 export default TopStories;
+
