@@ -5,7 +5,6 @@ import TopStories from './components/TopStories';
 import CovidCases from './components/CovidCases';
 import axios from 'axios';
 
-
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 let key = "kyYo208otidmmu0E7303fCGUBy5IbJhV";
@@ -33,13 +32,18 @@ componentDidMount = () => {
   this.getCovidStats();
 };
 
-handleSubmission = (e) => {
+handleSubmission = async (e) => {
   e.preventDefault();
   console.log(e.target[0].name + " " + e.target[0].value)
   let submittedQuery = e.target[0].value
   console.log(submittedQuery);
+  let cityStat = await this.state.covidStats.find((specificStat) => {
+    return specificStat.country_name.toLowerCase() === submittedQuery.toLowerCase();
+})
+console.log(cityStat);
   this.setState({
-    query: submittedQuery
+    query: submittedQuery,
+    cityStat: cityStat
   }, this.getAllStories)
   console.log(this.state)
 }
@@ -49,7 +53,7 @@ getAllStories = () => {
   console.log(baseUrl + "q=" + this.state.query + "&api-key=" + key)
   axios.get(baseUrl + "q=" + this.state.query + "&api-key=" + key)
   .then(response => {
-      console.log(response)
+      console.log("heyhey", response.data.response.docs)
       this.setState({
           stories: response.data.response.docs, 
           dataReady: true
@@ -116,14 +120,16 @@ render() {
               stories={this.state.stories} 
               dataReady={this.state.dataReady} 
               covidStats={this.state.covidStats}
+              query={this.state.query}
             />}>
           </Route>
           <Route exact path='/cases' render={(props) =>
             <CovidCases
             {...props}
-            stories={this.state.stories} 
+            cityStat={this.state.cityStat}
             dataReady={this.state.dataReady} 
             covidStats={this.state.covidStats}
+            query={this.state.query}
             />}>
           </Route>
         </Switch>
