@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.jumbotron {
+  background-image: url('../src/images/pulse_hero.jpg'); 
+  background-size: cover;
+  height: 800px;
+  color: white;
+  
+}
+
+.search-container {
+  margin-top: 140px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  background-color: rgba(29, 124, 165, 0.63);
+  width: 70%;
+  height: 50%;
+  border-radius: 20px;
+}
