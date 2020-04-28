@@ -101,15 +101,23 @@ render() {
         </nav>
         <div className="jumbotron">
           <div className="search-container">
-            <h1 className="display-4">Local Pulse</h1>
-            <p className="lead">A succinct summary of a region's top news, outbreak information, and travel tools.</p>
+            <h1 className="display-4">Country Pulse</h1>
+            <p className="lead">A succinct summary of a country's top news, outbreak information, and travel tools.</p>
             <div className="input-group input-group-lg">
             <div className="input-group-prepend">
               </div>
-              <form onSubmit={(e) => this.handleSubmission(e)}>
-                <input name="query" type="text" className="form-control" placeholder="City, Region, or Country"></input>
-                <button className="btn btn-info" type="submit">Submit</button>
-              </form>
+              <div class="input-group mb-3">
+                <form onSubmit={(e) => this.handleSubmission(e)}>
+                  <select class="custom-select" id="inputGroupSelect02">
+                    <option selected>Choose...</option>
+                    <option value="usa">USA</option>
+                    <option value="india">India</option>
+                    <option value="spain">Spain</option>
+                    <option value="france">France</option>
+                  </select>
+                  <button className="btn btn-info" type="submit">Submit</button>
+                </form>
+              </div>
             </div>
           </div>
       </div>
