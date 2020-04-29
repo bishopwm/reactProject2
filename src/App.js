@@ -4,6 +4,7 @@ import './App.css';
 import TopStories from './components/TopStories';
 import CovidCases from './components/CovidCases';
 import axios from 'axios';
+import dropdownNames from './dropdownNames.json';
 
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
@@ -32,6 +33,7 @@ componentDidMount = () => {
   this.getCovidStats();
 };
 
+// Handle submission on main form & use .find() method to match form input with covid stats
 handleSubmission = async (e) => {
   e.preventDefault();
   console.log(e.target[0].name + " " + e.target[0].value)
@@ -48,6 +50,8 @@ console.log(cityStat);
   console.log(this.state)
 }
 
+
+// Call NYT API and save response to state
 getAllStories = () => {
   console.log(this.state)
   console.log(baseUrl + "q=" + this.state.query + "&api-key=" + key)
@@ -64,6 +68,7 @@ getAllStories = () => {
   })
 }
 
+// Call COVID API and save response to state
 getCovidStats = () => {  
   axios.get(c_baseUrl, config)
   .then(response => {
@@ -77,11 +82,25 @@ getCovidStats = () => {
   })
 }
 
-
-
+// Map country_name field from Covid API response to country options list
+getDropdownNames = () => {  
+  let names = dropdownNames;
+  let namesList = names.map((eachName) => {
+    return (
+      <option key={eachName.country_name}>{eachName.country_name}</option>
+    )
+  })
+  let alphaSorted = namesList.sort(function(a,b){
+      if (a.key < b.key) return -1;
+      else if (a.key > b.key) return 1;
+      return 0;
+    })
+  return alphaSorted;
+}
 
 render() {
   console.log(this.state.covidStats)
+  
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -106,16 +125,13 @@ render() {
             <div className="input-group input-group-lg">
             <div className="input-group-prepend">
               </div>
-              <div class="input-group mb-3">
+              <div className="input-group mb-3">
                 <form onSubmit={(e) => this.handleSubmission(e)}>
-                  <select class="custom-select" id="inputGroupSelect02">
-                    <option selected>Choose...</option>
-                    <option value="usa">USA</option>
-                    <option value="india">India</option>
-                    <option value="spain">Spain</option>
-                    <option value="france">France</option>
+                  <select className="custom-select" id="inputGroupSelect02">
+                    <option>Choose...</option>
+                    {this.getDropdownNames()}
                   </select>
-                  <button className="btn btn-info" type="submit">Submit</button>
+                  <button className="btn btn-info" id="submit-button" type="submit">Let's Go!</button>
                 </form>
               </div>
             </div>

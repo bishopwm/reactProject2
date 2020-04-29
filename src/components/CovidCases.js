@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import './CovidCases.css';
 
 class CovidCases extends Component {
-
-componentDidMount() {
-
-    // let queryStat = this.props.covidStats.find((specificStat) => {
-    //     return specificStat.country_name === this.props.query;
-    // })
-    // this.setState({
-    //     cityStat: queryStat
-    // }, this.showCovidStats)
-}    
+ 
 
 showCovidStats =  () => {
     console.log(this.props.cityStat, this.props.covidStats)
@@ -38,14 +29,6 @@ showCovidStats =  () => {
         })
     }
 }
-
-// showSpecificStat() {
-//     let covidStats = this.props.covidStats ? this.props.covidStats : this.props.covidStats
-//     return covidStats.find((specificStat) => {
-//         console.log(specificStat.country_name === this.props.query);
-//     })
-// }
-
 
     render() {
         return (
