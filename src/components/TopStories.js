@@ -3,8 +3,6 @@ import './TopStories.css';
 
 class TopStories extends Component {
 
-
-
 componentDidMount() {
     console.log(this.props)
 }

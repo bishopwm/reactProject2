@@ -5,6 +5,7 @@ import TopStories from './components/TopStories';
 import CovidCases from './components/CovidCases';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
+import TravelAdvisories from './components/TravelAdvisories';
 
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
@@ -25,12 +26,14 @@ state = {
   stories: [],
   dataReady: false,
   covidStats: [],
-  query: "London"
+  query: "usa",
+  travelAdvisories: []
 };
 
 componentDidMount = () => {
   this.getAllStories();
   this.getCovidStats();
+  this.getTravelAdvisories();
 };
 
 // Handle submission on main form & use .find() method to match form input with covid stats
@@ -75,6 +78,19 @@ getCovidStats = () => {
     console.log(response)
       this.setState({
           covidStats: response.data.countries_stat, 
+      })
+  })
+  .catch(err => {
+      console.log(err)
+  })
+}
+
+getTravelAdvisories = () => {
+  axios.get("https://cors-anywhere.herokuapp.com/https://www.gov.uk/api/content/foreign-travel-advice/" + this.state.query)
+  .then(response => {
+    console.log(response)
+      this.setState({
+          travelAdvisories: response.data, 
       })
   })
   .catch(err => {
@@ -134,7 +150,7 @@ render() {
           </div>
         </div>
         <div className="content-container">
-          <div className="col-6">
+          <div className="col-3">
             <TopStories 
             stories={this.state.stories} 
             dataReady={this.state.dataReady} 
@@ -142,12 +158,19 @@ render() {
             query={this.state.query}
             />
           </div>
-          <div className="col-6">
+          <div className="col-4">
             <CovidCases 
             cityStat={this.state.cityStat}
             dataReady={this.state.dataReady} 
             covidStats={this.state.covidStats}
             query={this.state.query}
+            />
+          </div>
+          <div className="col-3">
+            <TravelAdvisories 
+            dataReady={this.state.dataReady} 
+            query={this.state.query}
+            travelAdvisories={this.state.travelAdvisories}
             />
           </div>
         </div>
