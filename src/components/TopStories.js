@@ -20,11 +20,6 @@ componentDidMount() {
 
 saveArticle = (eachStory) => {
     console.log("saving article")
-    // this.setState({
-    //     savedArticle: {
-    //         headline: eachStory.headline.main
-    //     }
-    // })
     axios.post("https://ironrest.herokuapp.com/willbcollection", {eachStory}).then(response => {
         console.log(response)
         let articles = [...this.state.articles]
@@ -49,7 +44,6 @@ showStories = () => {
         );
     });
 };
-
 
     render() {
         return (
