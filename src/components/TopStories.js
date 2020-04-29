@@ -26,7 +26,7 @@ showStories = () => {
         return (
             <div>
                 <ul className="list group article-list">
-                    <h1>Top Stories</h1>
+                    <h3>In the Headlines</h3>
                     {this.props.dataReady ? this.showStories() : "Loading..."}
                 </ul>
             </div>

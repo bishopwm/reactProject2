@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './App.css';
 import TopStories from './components/TopStories';
 import CovidCases from './components/CovidCases';
@@ -44,13 +44,12 @@ handleSubmission = async (e) => {
   console.log(submittedQuery);
   let cityStat = await this.state.covidStats.find((specificStat) => {
     return specificStat.country_name.toLowerCase() === submittedQuery.toLowerCase();
-})
-console.log(cityStat);
+  })  
   this.setState({
     query: submittedQuery,
     cityStat: cityStat
   }, this.getAllStories)
-  console.log(this.state)
+this.getTravelAdvisories(); //call all query-based components again after query is submitted.
 }
 
 
@@ -86,7 +85,7 @@ getCovidStats = () => {
 }
 
 getTravelAdvisories = () => {
-  axios.get("https://cors-anywhere.herokuapp.com/https://www.gov.uk/api/content/foreign-travel-advice/" + this.state.query)
+  axios.get("https://cors-anywhere.herokuapp.com/https://www.gov.uk/api/content/foreign-travel-advice/" + this.state.query.toLowerCase())
   .then(response => {
     console.log(response)
       this.setState({
@@ -122,10 +121,10 @@ render() {
               <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/stories`}>Top Stories</Link>
+              <Link className="nav-link" to={`/`}>Link</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={`/cases`}>Cases</Link>
+                <Link className="nav-link" to={`/`}>Link</Link>
               </li>
             </ul>
           </div>
@@ -158,7 +157,7 @@ render() {
             query={this.state.query}
             />
           </div>
-          <div className="col-4">
+          <div className="col-3">
             <CovidCases 
             cityStat={this.state.cityStat}
             dataReady={this.state.dataReady} 
@@ -166,7 +165,7 @@ render() {
             query={this.state.query}
             />
           </div>
-          <div className="col-3">
+          <div className="col-5">
             <TravelAdvisories 
             dataReady={this.state.dataReady} 
             query={this.state.query}
@@ -174,27 +173,6 @@ render() {
             />
           </div>
         </div>
-
-        <Switch>
-          {/* <Route exact path='/stories' render={(props) => 
-            <TopStories 
-              {...props} 
-              stories={this.state.stories} 
-              dataReady={this.state.dataReady} 
-              covidStats={this.state.covidStats}
-              query={this.state.query}
-            />}>
-          </Route> */}
-          {/* <Route exact path='/cases' render={(props) =>
-            <CovidCases
-            {...props}
-            cityStat={this.state.cityStat}
-            dataReady={this.state.dataReady} 
-            covidStats={this.state.covidStats}
-            query={this.state.query}
-            />}>
-          </Route> */}
-        </Switch>
       </div>
     );
   }
