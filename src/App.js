@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import TopStories from './components/TopStories';
 import CovidCases from './components/CovidCases';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
 import TravelAdvisories from './components/TravelAdvisories';
+import MyStuff from './components/MyStuff';
 
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
@@ -114,14 +115,14 @@ getDropdownNames = () => {
 render() {  
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
               <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/`}>Link</Link>
+              <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={`/`}>Link</Link>
@@ -149,7 +150,7 @@ render() {
           </div>
         </div>
         <div className="content-container">
-          <div className="col-3">
+          <div className="main-content col-3">
             <TopStories 
             stories={this.state.stories} 
             dataReady={this.state.dataReady} 
@@ -157,7 +158,7 @@ render() {
             query={this.state.query}
             />
           </div>
-          <div className="col-3">
+          <div className="main-content col-3">
             <CovidCases 
             cityStat={this.state.cityStat}
             dataReady={this.state.dataReady} 
@@ -165,7 +166,7 @@ render() {
             query={this.state.query}
             />
           </div>
-          <div className="col-5">
+          <div className="main-content col-5">
             <TravelAdvisories 
             dataReady={this.state.dataReady} 
             query={this.state.query}
@@ -173,7 +174,13 @@ render() {
             />
           </div>
         </div>
+        <>
+      <Switch>
+        <Route exact path='/my-stuff' render={(props) => <MyStuff {...props} />}></Route>
+      </Switch>
+      </>
       </div>
+
     );
   }
 } 

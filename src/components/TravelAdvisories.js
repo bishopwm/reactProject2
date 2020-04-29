@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './TravelAdvisories.css';
 
 class TravelAdvisories extends Component {
     showAdvisories = () => {      
         let advisories = this.props.travelAdvisories 
         console.log("hollller", advisories)
-        if(this.props.query === "UK"){
+        if(this.props.query === "UK" || this.props.query === "Antigua and Barbuda"){
             return (
-                <li className="list-group-item"></li> 
+                <li className="list-group-item">No advisory information available</li> 
             )
         } else {
             return ( 
@@ -23,8 +24,9 @@ class TravelAdvisories extends Component {
         render() {
             return (
                 <div>
-                    <ul className="list group">
+                    <ul className="list group article-list">
                         <h3>Travel Advisories</h3>
+                        {/* <img src='../src/images/govuk.png' alt="UK government logo"></img> */}
                         {this.props.dataReady ? this.showAdvisories() : "Loading..."}
                     </ul>
                 </div>
@@ -33,3 +35,4 @@ class TravelAdvisories extends Component {
     }
 
 export default TravelAdvisories;
+
