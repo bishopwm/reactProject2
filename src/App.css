@@ -55,3 +55,12 @@
   height: 50%;
   border-radius: 20px;
 }
+
+.content-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: baseline;
+	align-content: stretch;
+}

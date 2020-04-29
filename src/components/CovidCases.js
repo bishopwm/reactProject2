@@ -6,9 +6,7 @@ class CovidCases extends Component {
 
 showCovidStats =  () => {
     console.log(this.props.cityStat, this.props.covidStats)
-    //let covidStats = this.props.covidStats;
-
-    if(this.props.query !== "miami"){
+    if(this.props.query !== "London"){
         return (
         <li className="list-group-item">
             <p className="article-headline">{this.props.cityStat.country_name}</p>
@@ -33,10 +31,9 @@ showCovidStats =  () => {
     render() {
         return (
             <div>
-                    <h1>Covid Cases</h1>
                 <ul className="list group col-8 article-list">
+                    <h1>Covid Cases</h1>
                     {this.props.dataReady ? this.showCovidStats() : "Loading..."}
-                    {/* {this.props.dataReady ? this.showSpecificStat() : "Loading..."} */}
                 </ul>
             </div>
         );

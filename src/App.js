@@ -25,7 +25,7 @@ state = {
   stories: [],
   dataReady: false,
   covidStats: [],
-  query: "miami"
+  query: "London"
 };
 
 componentDidMount = () => {
@@ -86,9 +86,7 @@ getCovidStats = () => {
 getDropdownNames = () => {  
   let names = dropdownNames;
   let namesList = names.map((eachName) => {
-    return (
-      <option key={eachName.country_name}>{eachName.country_name}</option>
-    )
+    return <option key={eachName.country_name}>{eachName.country_name}</option>
   })
   let alphaSorted = namesList.sort(function(a,b){
       if (a.key < b.key) return -1;
@@ -98,9 +96,7 @@ getDropdownNames = () => {
   return alphaSorted;
 }
 
-render() {
-  console.log(this.state.covidStats)
-  
+render() {  
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -136,9 +132,28 @@ render() {
               </div>
             </div>
           </div>
-      </div>
+        </div>
+        <div className="content-container">
+          <div className="col-6">
+            <TopStories 
+            stories={this.state.stories} 
+            dataReady={this.state.dataReady} 
+            covidStats={this.state.covidStats}
+            query={this.state.query}
+            />
+          </div>
+          <div className="col-6">
+            <CovidCases 
+            cityStat={this.state.cityStat}
+            dataReady={this.state.dataReady} 
+            covidStats={this.state.covidStats}
+            query={this.state.query}
+            />
+          </div>
+        </div>
+
         <Switch>
-          <Route exact path='/stories' render={(props) => 
+          {/* <Route exact path='/stories' render={(props) => 
             <TopStories 
               {...props} 
               stories={this.state.stories} 
@@ -146,8 +161,8 @@ render() {
               covidStats={this.state.covidStats}
               query={this.state.query}
             />}>
-          </Route>
-          <Route exact path='/cases' render={(props) =>
+          </Route> */}
+          {/* <Route exact path='/cases' render={(props) =>
             <CovidCases
             {...props}
             cityStat={this.state.cityStat}
@@ -155,7 +170,7 @@ render() {
             covidStats={this.state.covidStats}
             query={this.state.query}
             />}>
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     );
