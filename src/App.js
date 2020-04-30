@@ -32,7 +32,6 @@ state = {
 componentDidMount = () => {
   this.getAllStories();
   this.getCovidStats();
-  this.getTravelAdvisories();
 };
 
 // Handle submission on main form & use .find() method to match form input with covid stats
