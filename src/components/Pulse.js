@@ -3,8 +3,7 @@ import TopStories from './TopStories';
 import CovidCases from './CovidCases';
 import TravelAdvisories from './TravelAdvisories';
 
-
-class Home extends Component {
+class Results extends Component {
     render() {
         return (
             <div>
@@ -38,4 +37,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Results;

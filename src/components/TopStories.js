@@ -32,7 +32,6 @@ saveArticle = (eachStory) => {
 
 showStories = () => {
     console.log(this.props.stories)
-    
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     return stories.map((eachStory) => {
         return (

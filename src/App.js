@@ -3,7 +3,9 @@ import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
-import Home from './components/Home';
+import Pulse from './components/Pulse';
+import MyOtherStuff from './components/MyOtherStuff';
+
 
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
@@ -116,71 +118,20 @@ handleRedirect = () => {
   this.setState({
     homeButtonClicked: true
   })
+  console.log("history", this.props.history)
 }
 
 render() { 
-  if(this.state.homeButtonClicked === false){
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-              <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
+              <li className="nav-item">
+              <Link className="nav-link" to={`/`}>Home</Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/home`}>Results</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <div className="jumbotron">
-          <div className="search-container">
-            <h1 className="display-4">Country Pulse</h1>
-            <p className="lead">A succinct summary of a country's top news, outbreak information, and travel tools.</p>
-            <div className="input-group input-group-lg">
-            <div className="input-group-prepend">
-              </div>
-              <div className="input-group mb-3">
-                <form onSubmit={(e) => this.handleSubmission(e)}>
-                  <select className="custom-select" id="inputGroupSelect02">
-                    <option>Choose...</option>
-                    {this.getDropdownNames()}
-                  </select>
-                  <button className="btn btn-info" id="submit-button" type="submit">Let's Go</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      <Switch>
-        <Route exact path='/home' render={(props) => <Home {...props} 
-          stories={this.state.stories} 
-          covidStats={this.state.covidStats}         
-          dataReady={this.state.dataReady} 
-          query={this.state.query}
-          cityStat={this.state.cityStat}
-          travelAdvisories={this.state.travelAdvisories}
-          />}></Route>
-      </Switch>
-      </div>
-      
-      
-
-    )} else {
-      return (
-        <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-              <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
-              </li>
-              <li className="nav-item">
-              <Link className="nav-link" to={`/home`}>Results</Link>
+              <Link className="nav-link" to={`/pulse`}>Pulse</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
@@ -201,14 +152,14 @@ render() {
                     <option>Choose...</option>
                     {this.getDropdownNames()}
                   </select>
-                  <button className="btn btn-info" id="submit-button" type="submit" onClick={this.handleRedirect}>Let's Go!</button>
+                  <button className="btn btn-info" id="submit-button" type="submit" onClick={() => this.handleRedirect()}>Let's Go</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
       <Switch>
-        <Route exact path='/home' render={(props) => <Home {...props} 
+        <Route exact path='/pulse' render={(props) => <Pulse {...props} 
           stories={this.state.stories} 
           covidStats={this.state.covidStats}         
           dataReady={this.state.dataReady} 
@@ -216,11 +167,11 @@ render() {
           cityStat={this.state.cityStat}
           travelAdvisories={this.state.travelAdvisories}
           />}></Route>
+        <Route exact path='/my-other-stuff' render={(props) => <MyOtherStuff {...props}/>}></Route>
+        {/* <Route exact path='/my-stuff' render={(props) => <MyStuff {...props}/>}></Route> */}
       </Switch>
-      < Home />
       </div>
-      )
-    }
+    )
   }
 } 
 export default App;
