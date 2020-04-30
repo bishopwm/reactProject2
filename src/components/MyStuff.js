@@ -19,6 +19,8 @@ class MyStuff extends Component {
         await axios.delete("https://ironrest.herokuapp.com/willbcollection/" + articlesRetrieved[i]._id).then(response => {
             console.log(response)
         });
+        console.log("this.props.articles during remove", this.props.articles)
+        this.props.articles.splice(i, 1);
         this.forceUpdate();
     }
 
