@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import TopStories from './components/TopStories';
-import CovidCases from './components/CovidCases';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
-import TravelAdvisories from './components/TravelAdvisories';
-import MyStuff from './components/MyStuff';
+import Home from './components/Home';
 
 // --> API credentials for Stories-NYTs
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
@@ -28,7 +25,8 @@ state = {
   dataReady: false,
   covidStats: [],
   query: "usa",
-  travelAdvisories: []
+  travelAdvisories: [],
+  homeButtonClicked: false
 };
 
 componentDidMount = () => {
@@ -95,6 +93,9 @@ getTravelAdvisories = () => {
   })
   .catch(err => {
       console.log(err)
+      this.setState({
+        query: undefined
+      })
   })
 }
 
@@ -112,7 +113,14 @@ getDropdownNames = () => {
   return alphaSorted;
 }
 
-render() {  
+handleRedirect = () => {
+  this.setState({
+    homeButtonClicked: true
+  })
+}
+
+render() { 
+  if(this.state.homeButtonClicked === false){
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -122,10 +130,10 @@ render() {
               <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
+              <Link className="nav-link" to={`/home`}>Results</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={`/`}>Link</Link>
+                <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
               </li>
             </ul>
           </div>
@@ -143,45 +151,77 @@ render() {
                     <option>Choose...</option>
                     {this.getDropdownNames()}
                   </select>
-                  <button className="btn btn-info" id="submit-button" type="submit">Let's Go!</button>
+                  <button className="btn btn-info" id="submit-button" type="submit" onClick={this.handleRedirect}>Let's Go!</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <div className="content-container">
-          <div className="main-content col-3">
-            <TopStories 
-            stories={this.state.stories} 
-            dataReady={this.state.dataReady} 
-            covidStats={this.state.covidStats}
-            query={this.state.query}
-            />
+      <Switch>
+        <Route exact path='/home' render={(props) => <Home {...props} 
+          stories={this.state.stories} 
+          covidStats={this.state.covidStats}         
+          dataReady={this.state.dataReady} 
+          query={this.state.query}
+          cityStat={this.state.cityStat}
+          travelAdvisories={this.state.travelAdvisories}
+          />}></Route>
+      </Switch>
+      </div>
+      
+      
+
+    )} else {
+      return (
+        <div>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+              <Link className="nav-link" to={`/`}>Home<span className="sr-only">(current)</span></Link>
+              </li>
+              <li className="nav-item">
+              <Link className="nav-link" to={`/home`}>Results</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
+              </li>
+            </ul>
           </div>
-          <div className="main-content col-3">
-            <CovidCases 
-            cityStat={this.state.cityStat}
-            dataReady={this.state.dataReady} 
-            covidStats={this.state.covidStats}
-            query={this.state.query}
-            />
-          </div>
-          <div className="main-content col-5">
-            <TravelAdvisories 
-            dataReady={this.state.dataReady} 
-            query={this.state.query}
-            travelAdvisories={this.state.travelAdvisories}
-            />
+        </nav>
+        <div className="jumbotron">
+          <div className="search-container">
+            <h1 className="display-4">Country Pulse</h1>
+            <p className="lead">A succinct summary of a country's top news, outbreak information, and travel tools.</p>
+            <div className="input-group input-group-lg">
+            <div className="input-group-prepend">
+              </div>
+              <div className="input-group mb-3">
+                <form onSubmit={(e) => this.handleSubmission(e)}>
+                  <select className="custom-select" id="inputGroupSelect02">
+                    <option>Choose...</option>
+                    {this.getDropdownNames()}
+                  </select>
+                  <button className="btn btn-info" id="submit-button" type="submit" onClick={this.handleRedirect}>Let's Go!</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-        <>
       <Switch>
-        <Route exact path='/my-stuff' render={(props) => <MyStuff {...props} />}></Route>
+        <Route exact path='/home' render={(props) => <Home {...props} 
+          stories={this.state.stories} 
+          covidStats={this.state.covidStats}         
+          dataReady={this.state.dataReady} 
+          query={this.state.query}
+          cityStat={this.state.cityStat}
+          travelAdvisories={this.state.travelAdvisories}
+          />}></Route>
       </Switch>
-      </>
+      < Home />
       </div>
-
-    );
+      )
+    }
   }
 } 
 export default App;

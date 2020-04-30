@@ -4,11 +4,12 @@ import './TravelAdvisories.css';
 class TravelAdvisories extends Component {
     showAdvisories = () => {      
         let advisories = this.props.travelAdvisories 
-        console.log("hollller", advisories)
-        if(this.props.query === "UK" || this.props.query === "Antigua and Barbuda"){
+        if(this.props.query === undefined){
             return (
                 <li className="list-group-item">No advisory information available</li> 
             )
+        } else if (this.props.query === "UK" || this.props.query === "" || this.props.query === null) {
+            return <li className="list-group-item">No advisory information available</li>
         } else {
             return ( 
                 <li className="list-group-item">
