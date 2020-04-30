@@ -4,7 +4,7 @@ import './App.css';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
 import Pulse from './components/Pulse';
-import MyOtherStuff from './components/MyOtherStuff';
+import MyStuff from './components/MyStuff';
 
 
 // --> API credentials for Stories-NYTs
@@ -26,9 +26,10 @@ state = {
   stories: [],
   dataReady: false,
   covidStats: [],
-  query: "usa",
+  query: "china",
   travelAdvisories: [],
-  homeButtonClicked: false
+  homeButtonClicked: false,
+  articles: []
 };
 
 componentDidMount = () => {
@@ -67,6 +68,27 @@ getAllStories = () => {
   })
   .catch(err => {
       console.log(err)
+  })
+}
+
+getStories = () => {
+  console.log(this.props)
+  axios.get("https://ironrest.herokuapp.com/willbcollection").then(response => {
+      this.setState({
+          articles: response.data
+      })
+  })
+}
+
+saveStories = (eachStory) => {
+  console.log("saving article")
+  axios.post("https://ironrest.herokuapp.com/willbcollection", {eachStory}).then(response => {
+      console.log(response)
+      let articles = [...this.state.articles]
+      articles.push(response.data.ops[0])
+      this.setState({
+          articles
+      })
   })
 }
 
@@ -164,11 +186,13 @@ render() {
           covidStats={this.state.covidStats}         
           dataReady={this.state.dataReady} 
           query={this.state.query}
+          articles={this.state.articles}
+          getStories={this.getStories}
+          saveStories={this.saveStories}
           cityStat={this.state.cityStat}
           travelAdvisories={this.state.travelAdvisories}
           />}></Route>
-        <Route exact path='/my-other-stuff' render={(props) => <MyOtherStuff {...props}/>}></Route>
-        {/* <Route exact path='/my-stuff' render={(props) => <MyStuff {...props}/>}></Route> */}
+        <Route exact path='/my-stuff' render={(props) => <MyStuff {...props} articles={this.state.articles}/>} ></Route>
       </Switch>
       </div>
     )

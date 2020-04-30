@@ -14,6 +14,9 @@ class Results extends Component {
                         dataReady={this.props.dataReady} 
                         covidStats={this.props.covidStats}
                         query={this.props.query}
+                        articles={this.props.articles}
+                        getStories={this.props.getStories}
+                        saveStories={this.props.saveStories}
                         />
                     </div>
                     <div className="main-content col-3">
