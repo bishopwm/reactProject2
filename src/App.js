@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';

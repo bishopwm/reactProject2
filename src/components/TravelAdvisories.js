@@ -4,7 +4,7 @@ import './TravelAdvisories.css';
 class TravelAdvisories extends Component {
     showAdvisories = () => {      
         let advisories = this.props.travelAdvisories 
-        if(this.props.query === undefined){
+        if(advisories.title === undefined){
             return (
                 <li className="list-group-item">No advisory information available</li> 
             )
