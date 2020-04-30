@@ -143,7 +143,7 @@ render() {
                     <option>Choose...</option>
                     {this.getDropdownNames()}
                   </select>
-                  <button className="btn btn-info" id="submit-button" type="submit">Let's Go!</button>
+                  <button className="btn btn-info" id="submit-button" type="submit">Let's Go</button>
                 </form>
               </div>
             </div>
