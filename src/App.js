@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import dropdownNames from './dropdownNames.json';
@@ -136,7 +136,8 @@ handleRedirect = () => {
   this.setState({
     homeButtonClicked: true
   })
-  console.log("history", this.props.history)
+  console.log("current url: ", this.props.history.location.pathname);
+  this.props.history.location.pathname = '/pulse'
 }
 
 render() { 
@@ -194,4 +195,4 @@ render() {
     )
   }
 } 
-export default App;
+export default withRouter(App);
