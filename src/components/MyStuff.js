@@ -12,17 +12,17 @@ class MyStuff extends Component {
     //     console.log("propssss", this.props.articles)
     // }
 
-    // removeArticle = async (i) => {
-    //     console.log("remove article", i)
-    //     let articlesRetrieved = this.props.articles;
-    //     console.log(articlesRetrieved[i]._id)
-    //     await axios.delete("https://ironrest.herokuapp.com/willbcollection/" + articlesRetrieved[i]._id).then(response => {
-    //         console.log(response)
-    //     });
-    //     console.log("this.props.articles during remove", this.props.articles)
-    //     this.props.articles.splice(i, 1);
-    //     // this.forceUpdate();
-    // }
+    removeArticle = async (i) => {
+        console.log("remove article", i)
+        let articlesRetrieved = this.props.articles;
+        console.log(articlesRetrieved[i]._id)
+        await axios.delete("https://ironrest.herokuapp.com/willbcollection/" + articlesRetrieved[i]._id).then(response => {
+            console.log(response)
+        });
+        //console.log("this.props.articles during remove", this.props.articles)
+        this.props.articles.splice(i, 1);
+        this.forceUpdate();
+    }
 
     // getSavedArticles = () => {
     //     console.log(this)
@@ -42,22 +42,14 @@ class MyStuff extends Component {
     // }
 
     showArticles= () => {
-        return this.props.articles.map((eachArticle) => {
-            return eachArticle.eachStory.headline.main
+        return this.props.articles.map((eachArticle, i) => {
+            return (
+                <li key={i}>{eachArticle.eachStory.headline.main}
+                <button onClick={() => this.removeArticle(i)}>Remove</button>
+                </li>
+            )
         })
     }
-
-    // getUpdatedArticles = () => {
-    //     // let updatedArticles = [...this.state.updatedArticles]
-    //     // return updatedArticles.map((eachArticle, i) => {
-    //     //     return (
-    //     //     <li className="list-group-item" key={eachArticle._id}>
-    //     //         <p className="article-headline">{eachArticle.eachStory.headline.main}</p>
-    //     //         <button onClick={() => this.removeArticle(i)}>Remove</button>
-    //     //     </li>
-    //     //     )
-    //     // }); 
-    // }
 
     render() {
         console.log("this:", this)

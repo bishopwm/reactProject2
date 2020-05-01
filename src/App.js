@@ -56,8 +56,8 @@ this.getTravelAdvisories(); //call all query-based components again after query 
 
 // Call NYT API and save response to state
 getAllStories = () => {
-  console.log(this.state)
-  console.log(baseUrl + "q=" + this.state.query + "&api-key=" + key)
+ // console.log(this.state)
+ // console.log(baseUrl + "q=" + this.state.query + "&api-key=" + key)
   axios.get(baseUrl + "q=" + this.state.query + "&api-key=" + key)
   .then(response => {
       console.log("heyhey", response.data.response.docs)
@@ -72,7 +72,7 @@ getAllStories = () => {
 }
 
 getStories = () => {
-  console.log(this.props)
+ // console.log(this.props)
   axios.get("https://ironrest.herokuapp.com/willbcollection").then(response => {
       this.setState({
           articles: response.data
@@ -81,7 +81,7 @@ getStories = () => {
 }
 
 saveStories = (eachStory) => {
-  console.log("saving article")
+ // console.log("saving article")
   axios.post("https://ironrest.herokuapp.com/willbcollection", {eachStory}).then(response => {
       console.log(response)
       let articles = [...this.state.articles]

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './TopStories.css';
-import MyStuff from './MyStuff';
 import axios from 'axios';
+
 
 class TopStories extends Component {
 
@@ -10,7 +10,7 @@ state = {
 }
 
 componentDidMount() {
-    console.log(this.props)
+   // console.log(this.props)
     this.props.getStories();
     // axios.get("https://ironrest.herokuapp.com/willbcollection").then(response => {
     //     this.setState({
@@ -20,7 +20,7 @@ componentDidMount() {
 }
 
 saveArticle = (eachStory) => {
-    console.log("saving article")
+    //console.log("saving article")
     this.props.saveStories(eachStory);
     // axios.post("https://ironrest.herokuapp.com/willbcollection", {eachStory}).then(response => {
     //     console.log(response)
@@ -33,7 +33,7 @@ saveArticle = (eachStory) => {
 }
 
 showStories = () => {
-    console.log(this.props)
+   // console.log(this.props)
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     return stories.map((eachStory, i) => {
         return (
@@ -47,16 +47,28 @@ showStories = () => {
 };
 showArticles = () => {
     let articles = this.props.articles ? this.props.articles : this.props.articles;
-    console.log(this)
+    //console.log(this)
     return articles.map((article, i) => {
         return (
             <li className="list-group-item" key={i}>
                 <p className="article-headline">{article.eachStory.headline?.main}</p>
                 <p className="article-lead">{article.eachStory.lead_paragraph}</p>
-                <button >Remove</button>
+                <button onClick={() => this.removeArticle(i)}>Remove</button>
             </li>
         );
     });
+}
+
+removeArticle = async (i) => {
+    console.log("remove article", i)
+    let articlesRetrieved = this.props.articles;
+    console.log(articlesRetrieved[i]._id)
+    await axios.delete("https://ironrest.herokuapp.com/willbcollection/" + articlesRetrieved[i]._id).then(response => {
+        console.log(response)
+    });
+    //console.log("this.props.articles during remove", this.props.articles)
+    this.props.articles.splice(i, 1);
+    this.forceUpdate();
 }
 
     render() {

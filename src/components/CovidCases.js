@@ -5,7 +5,7 @@ class CovidCases extends Component {
  
 
 showCovidStats =  () => {
-    console.log(this.props.cityStat, this.props.covidStats)
+   // console.log(this.props.cityStat, this.props.covidStats)
     if(this.props.query !== "china"){
         return (
         <li className="list-group-item">
