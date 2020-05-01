@@ -1,39 +1,39 @@
 import React, { Component } from 'react';
 import './TopStories.css';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class TopStories extends Component {
 
 state = {
-    articles: []
+    articles: [],
+    showAlert: false
+
+}
+
+closeAlert = () => {
+    this.setState({
+        showAlert: false
+    })
 }
 
 componentDidMount() {
-   // console.log(this.props)
+    // Get all NYT articles
     this.props.getStories();
-    // axios.get("https://ironrest.herokuapp.com/willbcollection").then(response => {
-    //     this.setState({
-    //         articles: response.data
-    //     })
-    // })
 }
 
 saveArticle = (eachStory) => {
-    //console.log("saving article")
+    //Save individual article
     this.props.saveStories(eachStory);
-    // axios.post("https://ironrest.herokuapp.com/willbcollection", {eachStory}).then(response => {
-    //     console.log(response)
-    //     let articles = [...this.state.articles]
-    //     articles.push(response.data.ops[0])
-    //     this.setState({
-    //         articles
-    //     })
-    // })
+    this.setState({
+        showAlert: true
+    })
+
 }
 
 showStories = () => {
-   // console.log(this.props)
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     return stories.map((eachStory, i) => {
         return (
@@ -47,7 +47,6 @@ showStories = () => {
 };
 showArticles = () => {
     let articles = this.props.articles ? this.props.articles : this.props.articles;
-    //console.log(this)
     return articles.map((article, i) => {
         return (
             <li className="list-group-item" key={i}>
@@ -66,7 +65,6 @@ removeArticle = async (i) => {
     await axios.delete("https://ironrest.herokuapp.com/willbcollection/" + articlesRetrieved[i]._id).then(response => {
         console.log(response)
     });
-    //console.log("this.props.articles during remove", this.props.articles)
     this.props.articles.splice(i, 1);
     this.forceUpdate();
 }
@@ -74,13 +72,13 @@ removeArticle = async (i) => {
     render() {
         return (
             <div>
-                {/* <MyStuff articles={this.state.articles}/> */}
+                
                 <div>
                     <ul className="list group article-list">
                         <h3>In the Headlines</h3>
-                        {this.props.dataReady ? this.showArticles() : "loading" }
+                        <Alert show={this.state.showAlert} dismissible variant='success' onClick={this.closeAlert}>Saved</Alert>
+                        {/* {this.props.dataReady ? this.showArticles() : "Loading..." } */}
                         {this.props.dataReady ? this.showStories() : "Loading..."}
-                        
                     </ul>
                 </div>
             </div>
