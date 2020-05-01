@@ -37,7 +37,7 @@ showStories = () => {
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     return stories.map((eachStory, i) => {
         return (
-            <li className="list-group-item" key={i}>
+            <li className="list-group-item all-articles" key={i}>
                 <p className="article-headline">{eachStory.headline.main}</p>
                 <p className="article-lead">{eachStory.lead_paragraph}</p>
                 <button onClick={() => this.saveArticle(eachStory)}>Save</button>

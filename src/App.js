@@ -26,10 +26,12 @@ state = {
   stories: [],
   dataReady: false,
   covidStats: [],
-  query: "australia",
+  query: "",
   travelAdvisories: [],
   homeButtonClicked: false,
-  articles: []
+  articles: [],
+  homeSelectionMade: false,
+  queryReady: false
 };
 
 componentDidMount = () => {
@@ -140,10 +142,18 @@ handleRedirect = () => {
   this.props.history.location.pathname = '/pulse'
 }
 
+handleSelection = (e) => {
+  console.log("selection made")
+  this.setState({
+    query: e.target.value,
+    queryReady: true
+  })
+}
+
 render() { 
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
@@ -167,11 +177,12 @@ render() {
               </div>
               <div className="input-group mb-3">
                 <form onSubmit={(e) => this.handleSubmission(e)}>
-                  <select className="custom-select" id="inputGroupSelect02">
+                  <select onChange={(e)=>this.handleSelection(e)} className="custom-select" id="inputGroupSelect02">
                     <option>Choose...</option>
                     {this.getDropdownNames()}
                   </select>
-                  <button className="btn btn-info" id="submit-button" type="submit" onClick={() => this.handleRedirect()}>Let's Go</button>
+                  {this.state.query.length > 0 ? <button className="btn btn-info" id="submit-button" type="submit" onClick={() => this.handleRedirect()}>Let's Go</button> : <button disabled className="btn btn-info" id="submit-button" type="submit" onClick={() => this.handleRedirect()}>Make selection</button>}
+                  {/* <button className="btn btn-info" id="submit-button" type="submit" onClick={() => this.handleRedirect()}>Let's Go</button> */}
                 </form>
               </div>
             </div>
