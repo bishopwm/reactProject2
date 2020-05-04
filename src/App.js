@@ -7,7 +7,8 @@ import Pulse from './components/Pulse';
 import MyStuff from './components/MyStuff';
 
 
-// --> API credentials for Stories-NYTs
+
+// --> API credentials for Stories-NYT
 let baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 let key = "kyYo208otidmmu0E7303fCGUBy5IbJhV";
 
@@ -135,7 +136,11 @@ handleRedirect = () => {
     homeButtonClicked: true
   })
   console.log("current url: ", this.props.history.location.pathname);
-  this.props.history.location.pathname = '/pulse'
+  this.props.history.location.pathname = '/pulse';
+  var Scroll = require('react-scroll');
+  var scroll = Scroll.animateScroll;
+   
+  scroll.scrollMore(875);
 }
 
 handleSelection = (e) => {

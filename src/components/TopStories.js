@@ -36,7 +36,7 @@ saveArticle = (eachStory) => {
 }
 
 showStories = () => {
-    let imageBaseUrl = "https://static01.nyt.com/";
+    // let imageBaseUrl = "https://static01.nyt.com/";
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     console.log("nyt multimedia", this.props.stories[0].multimedia)
     return stories.map((eachStory, i) => {

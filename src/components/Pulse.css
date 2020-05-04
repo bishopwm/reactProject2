@@ -1,0 +1,36 @@
+.main-content {
+    overflow: scroll;
+    height: 850px;
+    margin-bottom: 100px;
+}
+
+.travel-container {
+    height: 850px;
+    background-color: rgba(29, 124, 165, 0.74);
+    color: black;
+}
+
+.travel-search {
+    margin-left: 40px;
+    color: white;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.card {
+    width: 400px;
+    
+}
+
+#travel-content {
+    padding-top: 50px;
+}
+
+#travel-image {
+    width: 100%;
+    padding-bottom: 40px;
+}

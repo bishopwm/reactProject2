@@ -4,6 +4,16 @@ import govuk from '../govuk.png';
 import travel from '../travel.jpg';
 
 class TravelAdvisories extends Component {
+
+    componentDidMount() {
+    
+        const script = document.createElement("script");
+        script.src="https://widgets.skyscanner.net/widget-server/js/loader.js";
+        script.async = true;
+
+        document.body.appendChild(script);
+    }
+
     showAdvisories = () => {      
         let advisories = this.props.travelAdvisories 
         // console.log("query ", this.props.query)
