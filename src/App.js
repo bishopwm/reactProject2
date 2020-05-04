@@ -31,7 +31,8 @@ state = {
   homeButtonClicked: false,
   articles: [],
   homeSelectionMade: false,
-  queryReady: false
+  queryReady: false,
+  country: "Country"
 };
 
 componentDidMount = () => {
@@ -143,10 +144,10 @@ handleRedirect = () => {
 }
 
 handleSelection = (e) => {
-  console.log("selection made")
   this.setState({
     query: e.target.value,
-    queryReady: true
+    queryReady: true,
+    country: e.target.value
   })
 }
 
@@ -170,7 +171,7 @@ render() {
         </nav>
         <div className="jumbotron">
           <div className="search-container">
-            <h1 className="display-4">Country Pulse</h1>
+            <h1 className="display-4">{this.state.country} Pulse</h1>
             <p className="lead">A succinct summary of a country's top news, outbreak information, and travel tools.</p>
             <div className="input-group input-group-lg">
             <div className="input-group-prepend">

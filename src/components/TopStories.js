@@ -3,6 +3,7 @@ import './TopStories.css';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import headlines from '../headlines.jpg';
 
 
 class TopStories extends Component {
@@ -40,7 +41,7 @@ showStories = () => {
             <li className="list-group-item all-articles" key={i}>
                 <p className="article-headline">{eachStory.headline.main}</p>
                 <p className="article-lead">{eachStory.lead_paragraph}</p>
-                <button onClick={() => this.saveArticle(eachStory)}>Save</button>
+                <button className="btn btn-secondary" id="save-button" onClick={() => this.saveArticle(eachStory)}>Save</button>
             </li>
         );
     });
@@ -76,6 +77,7 @@ removeArticle = async (i) => {
                 <div>
                     <ul className="list group article-list">
                         <h3>In the Headlines</h3>
+                        <img src={(headlines)} id="headlines-img" alt=""></img>
                         <Alert show={this.state.showAlert} dismissible variant='success' onClick={this.closeAlert}>Saved</Alert>
                         {/* {this.props.dataReady ? this.showArticles() : "Loading..." } */}
                         {this.props.dataReady ? this.showStories() : "Loading..."}

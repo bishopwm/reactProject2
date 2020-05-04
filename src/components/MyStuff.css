@@ -1,3 +1,18 @@
 #saved-articles {
     color: rgb(26, 77, 136);
 }
+
+.saved-articles-list {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+.articles-list-item {
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+#remove-button {
+    font-size: 0.8em;
+    margin-right: 15px;
+}

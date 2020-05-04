@@ -19,8 +19,9 @@ class MyStuff extends Component {
     showArticles= () => {
         return this.props.articles.map((eachArticle, i) => {
             return (
-                <li key={i}>{eachArticle.eachStory.headline.main}
-                <button onClick={() => this.removeArticle(i)}>Remove</button>
+                <li className="list-group-item articles-list-item list-group-item-primary" key={i}>
+                    <button className="btn btn-danger" id="remove-button" onClick={() => this.removeArticle(i)}>Remove</button>
+                    {eachArticle.eachStory.headline.main}
                 </li>
             )
         })
@@ -31,7 +32,7 @@ class MyStuff extends Component {
         return (
             <div>
                 <div>
-                    <ul>
+                    <ul className="col-8 list-group saved-articles-list">
                     <h3 id="saved-articles">My Saved Articles</h3>
                     {/* {this.getSavedArticles()} */}
                     {this.showArticles()}

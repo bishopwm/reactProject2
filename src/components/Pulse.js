@@ -8,7 +8,7 @@ class Results extends Component {
         return (
             <div>
                 <div className="content-container">
-                    <div className="main-content col-3">
+                    <div className="main-content col-4">
                         <TopStories 
                         stories={this.props.stories} 
                         dataReady={this.props.dataReady} 
@@ -19,7 +19,7 @@ class Results extends Component {
                         saveStories={this.props.saveStories}
                         />
                     </div>
-                    <div className="main-content col-3">
+                    <div className="main-content col-4">
                         <CovidCases 
                         cityStat={this.props.cityStat}
                         dataReady={this.props.dataReady} 
@@ -27,7 +27,7 @@ class Results extends Component {
                         query={this.props.query}
                         />
                     </div>
-                    <div className="main-content col-5">
+                    <div className="main-content col-4">
                         <TravelAdvisories 
                         dataReady={this.props.dataReady} 
                         query={this.props.query}

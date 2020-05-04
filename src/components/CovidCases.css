@@ -5,4 +5,12 @@
 
 .all-covid-stats {
     font-size: 0.85em;
+    margin: 7px;
+}
+
+#covidpng {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }

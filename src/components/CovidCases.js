@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './CovidCases.css';
+import covid19 from '../covid19.jpg';
 
 class CovidCases extends Component {
  
 
 showCovidStats =  () => {
-    let allStats = this.props.covidStats
+    // let allStats = this.props.covidStats
     // allStats.splice(0, 1);
-    console.log("all covid stats", allStats);
-    if(this.props.queryReady === true){
+    console.log("query ready?", this.props.queryReady);
+    if(this.props.query === true){
         return (
         <li className="list-group-item all-covid-stats">
             <p className="country-name"><strong>{this.props.cityStat.country_name}</strong></p>
@@ -34,7 +35,8 @@ showCovidStats =  () => {
         return (
             <div>
                 <ul className="list group article-list">
-                    <h3>Covid-19 Data</h3>
+                    <h3>Covid-19 (Coronavirus)</h3>
+                    <img src={(covid19)} id="covidpng" alt=""></img>    
                     {this.props.dataReady ? this.showCovidStats() : "Loading..."}
                 </ul>
             </div>
