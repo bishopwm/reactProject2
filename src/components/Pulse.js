@@ -24,18 +24,18 @@ class Results extends Component {
                         />
                     </div>
                     <div className="main-content col-4">
+                        <TravelAdvisories 
+                        dataReady={this.props.dataReady} 
+                        query={this.props.query}
+                        travelAdvisories={this.props.travelAdvisories}
+                        />
+                    </div>
+                    <div className="main-content col-4">
                         <CovidCases 
                         cityStat={this.props.cityStat}
                         dataReady={this.props.dataReady} 
                         covidStats={this.props.covidStats}
                         query={this.props.query}
-                        />
-                    </div>
-                    <div className="main-content col-4">
-                        <TravelAdvisories 
-                        dataReady={this.props.dataReady} 
-                        query={this.props.query}
-                        travelAdvisories={this.props.travelAdvisories}
                         />
                     </div>
                 </div>

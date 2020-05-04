@@ -151,6 +151,13 @@ handleSelection = (e) => {
   })
 }
 
+handleScroll = () => {
+  var Scroll = require('react-scroll');
+  var scroll = Scroll.animateScroll;
+   
+  scroll.scrollMore(875);
+}
+
 render() { 
     return (
       <div>
@@ -161,7 +168,7 @@ render() {
               <Link className="nav-link" to={`/`}>Home</Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/pulse`}>Pulse</Link>
+              <Link className="nav-link" to={`/pulse`} onClick={this.handleScroll()}>Pulse</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
