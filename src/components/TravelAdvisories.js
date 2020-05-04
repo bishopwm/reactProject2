@@ -6,6 +6,7 @@ import travel from '../travel.jpg';
 class TravelAdvisories extends Component {
     showAdvisories = () => {      
         let advisories = this.props.travelAdvisories 
+        console.log("query ", this.props.query)
         if(advisories.title === undefined){
             return (
                 <li className="list-group-item">No advisory information available</li> 

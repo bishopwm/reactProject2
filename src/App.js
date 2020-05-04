@@ -31,7 +31,6 @@ state = {
   homeButtonClicked: false,
   articles: [],
   homeSelectionMade: false,
-  queryReady: false,
   country: "Country"
 };
 
@@ -45,13 +44,9 @@ handleSubmission = async (e) => {
   e.preventDefault();
   console.log(e.target[0].name + " " + e.target[0].value)
   let submittedQuery = e.target[0].value
-  console.log(submittedQuery);
-  let cityStat = await this.state.covidStats.find((specificStat) => {
-    return specificStat.country_name.toLowerCase() === submittedQuery.toLowerCase();
-  })  
+  console.log(submittedQuery); 
   this.setState({
-    query: submittedQuery,
-    cityStat: cityStat
+    query: submittedQuery
   }, this.getAllStories)
 this.getTravelAdvisories(); //call all query-based components again after query is submitted.
 }

@@ -41,7 +41,7 @@ showStories = () => {
             <li className="list-group-item all-articles" key={i}>
                 <p className="article-headline">{eachStory.headline.main}</p>
                 <p className="article-lead">{eachStory.lead_paragraph}</p>
-                <button className="btn btn-secondary" id="save-button" onClick={() => this.saveArticle(eachStory)}>Save</button>
+                <button className="btn btn-info" id="save-button" onClick={() => this.saveArticle(eachStory)}>Save</button>
             </li>
         );
     });
