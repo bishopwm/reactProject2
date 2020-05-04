@@ -4,6 +4,7 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import headlines from '../headlines.jpg';
+import nytLogo from '../nyt_logo.png';
 
 
 class TopStories extends Component {
@@ -35,17 +36,29 @@ saveArticle = (eachStory) => {
 }
 
 showStories = () => {
+    let imageBaseUrl = "https://static01.nyt.com/";
     let stories = this.props.stories ? this.props.stories : this.props.stories;
+    console.log("nyt multimedia", this.props.stories[0].multimedia)
     return stories.map((eachStory, i) => {
+        // let multimedia = eachStory.multimedia.shift();
         return (
             <li className="list-group-item all-articles" key={i}>
-                <p className="article-headline">{eachStory.headline.main}</p>
+                <img alt="nyt logo" src={nytLogo} id="nyt-logo"></img>
+                <p className="article-headline"><a href={ eachStory.web_url}>{ eachStory.headline.main}</a></p>
+                <p className="article-publish-date"><strong>{ eachStory.pub_date.replace(/T.*$/,"")}</strong></p>
                 <p className="article-lead">{eachStory.lead_paragraph}</p>
+                {/* <p className="article-img"><img src={imageBaseUrl +  eachStory.multimedia.shift().url}></img>IMG</p> */}
                 <button className="btn btn-info" id="save-button" onClick={() => this.saveArticle(eachStory)}>Save</button>
             </li>
         );
     });
 };
+
+// let cityStat = this.props.covidStats.find((specificStat) => {
+//     return specificStat.country_name.toLowerCase() === this.props.query.toLowerCase();
+//   })  
+
+
 showArticles = () => {
     let articles = this.props.articles ? this.props.articles : this.props.articles;
     return articles.map((article, i) => {

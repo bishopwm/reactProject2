@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../components/MyStuff.css';
 import axios from 'axios';
+import nytLogo from '../nyt_logo.png';
 
 class MyStuff extends Component {
 
@@ -19,9 +20,20 @@ class MyStuff extends Component {
     showArticles= () => {
         return this.props.articles.map((eachArticle, i) => {
             return (
-                <li className="list-group-item articles-list-item list-group-item-primary" key={i}>
-                    <button className="btn btn-danger" id="remove-button" onClick={() => this.removeArticle(i)}>Remove</button>
-                    {eachArticle.eachStory.headline.main}
+                <li className="list-group-item articles-list-item list-group-item-light" key={i}>
+                    <div>
+                        <button className="btn btn-danger" id="remove-button" onClick={() => this.removeArticle(i)}>Remove</button>
+                        <img alt="nyt logo" src={nytLogo} id="nyt-logo-saved"></img>
+                    </div>
+                    <p id="article-link">
+                        <a href={eachArticle.eachStory.web_url}>{eachArticle.eachStory.headline.main}</a>
+                    </p>
+                    <p>
+                    {eachArticle.eachStory.pub_date.replace(/T.*$/,"")}
+                    </p>
+                    <p>
+                    {eachArticle.eachStory.lead_paragraph}
+                    </p>
                 </li>
             )
         })

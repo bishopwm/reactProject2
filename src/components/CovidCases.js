@@ -6,11 +6,10 @@ class CovidCases extends Component {
  
 
 showCovidStats =  () => {
-    // let allStats = this.props.covidStats
-    // allStats.splice(0, 1);
     let cityStat = this.props.covidStats.find((specificStat) => {
         return specificStat.country_name.toLowerCase() === this.props.query.toLowerCase();
-      })  
+      });
+    
     console.log("query ready?", this.props.query, cityStat, this.props.covidStats);
     if(this.props.query !== ""){
         return (
@@ -21,7 +20,9 @@ showCovidStats =  () => {
             <p><strong>Tests per mil: </strong>{cityStat.tests_per_1m_population}</p>
         </li>)
     } else {
-        return this.props.covidStats.map((eachStat) => {
+        let fixedStats = this.props.covidStats;
+        fixedStats.splice(0, 1);
+        return fixedStats.map((eachStat) => {
             return (
                 <li className="list-group-item all-covid-stats" key={eachStat.country_name}>
                     <p className="country-name"><strong>{eachStat.country_name}</strong></p>

@@ -16,3 +16,12 @@
     font-size: 0.8em;
     margin-right: 15px;
 }
+
+#nyt-logo-saved {
+    width: 20%;
+    margin-bottom: 5px;
+}
+
+#article-link {
+    margin-top: 10px;
+}
