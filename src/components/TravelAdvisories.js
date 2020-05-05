@@ -6,11 +6,9 @@ import travel from '../travel.jpg';
 class TravelAdvisories extends Component {
 
     componentDidMount() {
-    
         const script = document.createElement("script");
         script.src="https://widgets.skyscanner.net/widget-server/js/loader.js";
         script.async = true;
-
         document.body.appendChild(script);
     }
 
@@ -28,8 +26,7 @@ class TravelAdvisories extends Component {
                 <li className="list-group-item all-advisories">
                     <p><strong>{advisories.title.toUpperCase()}</strong></p>
                     <div className="logo-container">
-                            <h6 id="api-author">Provided by</h6>
-                            <img id="govuk" src={(govuk)} alt=""></img>
+                            <h5 id="api-author">Advisories provided by<img id="govuk" src={(govuk)} alt=""></img></h5>
                         </div>
                     <p><strong>Last Update: </strong>{advisories.updated_at.replace(/T.*$/,"")}</p>
                     <p><strong>Summary: </strong>{advisories.description.replace(/ and information on returning to the UK./ig, '.')}</p>
@@ -43,7 +40,7 @@ class TravelAdvisories extends Component {
             return (
                 <div>
                     <ul className="list group article-list">
-                        <h3>Travel Advisories</h3>
+                        <h1>Travel Advisories</h1>
                         <img src={(travel)} id="travel-img" alt=""></img>
                         {this.props.dataReady ? this.showAdvisories() : "Loading..."}
                     </ul>

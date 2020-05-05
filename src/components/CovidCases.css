@@ -3,6 +3,10 @@
     font-size: 1.5em;
 }
 
+#more-link {
+    color: #1c3885f5;
+}
+
 .all-covid-stats {
     font-size: 0.85em;
     margin: 7px;

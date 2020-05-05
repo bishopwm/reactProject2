@@ -18,6 +18,11 @@ showCovidStats =  () => {
             <p><strong>Cases: </strong>{cityStat.cases}</p>
             <p><strong>Deaths: </strong>{cityStat.deaths}</p>
             <p><strong>Tests per mil: </strong>{cityStat.tests_per_1m_population}</p>
+            <p><strong>Deaths/Million: </strong>{cityStat.deaths_per_1m_population}</p>
+            <p><strong>Serious/Critical: </strong>{cityStat.serious_critical}</p>
+            <p><strong>Total Recovered: </strong>{cityStat.total_recovered}</p>
+            <hr></hr>
+            <p id="more-link"><strong><h5>Looking for more?</h5></strong>View comphrensive stats on <a href="https://coronavirus.jhu.edu/map.html">Johns Hopkins' Resource Center</a>.</p>
         </li>)
     } else {
         let fixedStats = this.props.covidStats;
@@ -39,7 +44,7 @@ showCovidStats =  () => {
         return (
             <div>
                 <ul className="list group article-list">
-                    <h3>Covid-19 (Coronavirus)</h3>
+                    <h1>Coronavirus</h1>
                     <img src={(covid19)} id="covidpng" alt=""></img>    
                     {this.props.dataReady ? this.showCovidStats() : "Loading..."}
                 </ul>

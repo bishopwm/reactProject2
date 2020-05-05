@@ -89,7 +89,7 @@ removeArticle = async (i) => {
                 
                 <div>
                     <ul className="list group article-list">
-                        <h3>In the Headlines</h3>
+                        <h1>In the Headlines</h1>
                         <img src={(headlines)} id="headlines-img" alt=""></img>
                         <Alert show={this.state.showAlert} dismissible variant='success' onClick={this.closeAlert}>Saved</Alert>
                         {/* {this.props.dataReady ? this.showArticles() : "Loading..." } */}

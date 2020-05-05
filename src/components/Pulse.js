@@ -6,6 +6,8 @@ import './Pulse.css';
 import flights from '../flights.jpg';
 import hotels from '../hotels.jpg';
 import stockMap from '../stock_map.jpg';
+import ResultsTable from './ResultsTable';
+
 
 class Results extends Component {
     render() {
@@ -43,7 +45,7 @@ class Results extends Component {
                     <div id="travel-content">
                         <div className="travel-search">
                             <h2>Travel Tools</h2>
-                            <i>Search flight prices in real time — Browse flights and hotels by destination and date.</i>
+                            <i>Search flight and hotel prices in real time — Browse by destination and date.</i>
                             <hr></hr>
                         </div>
                         <div className="card-container">
@@ -75,8 +77,18 @@ class Results extends Component {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>   
                     </div>
+                    <ResultsTable 
+                    stories={this.props.stories} 
+                    dataReady={this.props.dataReady} 
+                    covidStats={this.props.covidStats}
+                    query={this.props.query}
+                    articles={this.props.articles}
+                    getStories={this.props.getStories}
+                    saveStories={this.props.saveStories}
+                    />
                 </div>
             </div>
         );

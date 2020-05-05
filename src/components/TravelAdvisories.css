@@ -1,12 +1,13 @@
 #govuk {
-    width: 90%;
-
+    width: 30%;
+    margin-left: 10px;
+    padding-bottom: 3px;
 }
 
 .logo-container {
     background-color: rgba(29, 124, 165, 0.164);
-    height: 60px;
-    width: 30%;
+    height: 30px;
+    width: 70%;
     border-radius: 8px;
     padding: 5px;
     margin-bottom: 15px;
@@ -31,8 +32,3 @@
 .all-advisories {
     margin: 5px;
 }
-
-/* .article-list {
-    overflow: scroll;
-    height: 600px;
-} */

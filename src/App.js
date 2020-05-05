@@ -87,7 +87,7 @@ saveStories = (eachStory) => {
   })
 }
 
-// Call COVID API and save response to state
+// Call COVID API and save response
 getCovidStats = () => {  
   axios.get(c_baseUrl, config)
   .then(response => {
@@ -101,6 +101,8 @@ getCovidStats = () => {
   })
 }
 
+
+// Call UK GOV API and save response to state
 getTravelAdvisories = () => {
   axios.get("https://cors-anywhere.herokuapp.com/https://www.gov.uk/api/content/foreign-travel-advice/" + this.state.query.toLowerCase())
   .then(response => {
@@ -115,6 +117,10 @@ getTravelAdvisories = () => {
         query: undefined
       })
   })
+}
+
+getNothing = () => {
+
 }
 
 // Map country_name field from Covid API response to country options list
@@ -140,7 +146,7 @@ handleRedirect = () => {
   var Scroll = require('react-scroll');
   var scroll = Scroll.animateScroll;
    
-  scroll.scrollMore(875);
+  scroll.scrollMore(880);
 }
 
 handleSelection = (e) => {
@@ -149,13 +155,6 @@ handleSelection = (e) => {
     queryReady: true,
     country: e.target.value
   })
-}
-
-handleScroll = () => {
-  var Scroll = require('react-scroll');
-  var scroll = Scroll.animateScroll;
-   
-  scroll.scrollMore(875);
 }
 
 render() { 
@@ -168,7 +167,7 @@ render() {
               <Link className="nav-link" to={`/`}>Home</Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link" to={`/pulse`} onClick={this.handleScroll()}>Pulse</Link>
+              <Link className="nav-link" to={`/pulse`}>Pulse</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={`/my-stuff`}>My Stuff</Link>
