@@ -54,9 +54,7 @@ showStories = () => {
     });
 };
 
-// let cityStat = this.props.covidStats.find((specificStat) => {
-//     return specificStat.country_name.toLowerCase() === this.props.query.toLowerCase();
-//   })  
+
 
 
 showArticles = () => {

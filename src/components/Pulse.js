@@ -80,15 +80,17 @@ class Results extends Component {
                             
                         </div>   
                     </div>
-                    <ResultsTable 
-                    stories={this.props.stories} 
-                    dataReady={this.props.dataReady} 
-                    covidStats={this.props.covidStats}
-                    query={this.props.query}
-                    articles={this.props.articles}
-                    getStories={this.props.getStories}
-                    saveStories={this.props.saveStories}
-                    />
+                    <div className="articles-table">
+                        <ResultsTable 
+                        stories={this.props.stories} 
+                        dataReady={this.props.dataReady} 
+                        covidStats={this.props.covidStats}
+                        query={this.props.query}
+                        articles={this.props.articles}
+                        getStories={this.props.getStories}
+                        saveStories={this.props.saveStories}
+                        />
+                    </div>
                 </div>
             </div>
         );
