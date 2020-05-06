@@ -81,7 +81,7 @@ class Results extends Component {
                         </div>   
                     </div>
                     <div className="articles-table">
-                        <ResultsTable 
+                        {/* <ResultsTable 
                         stories={this.props.stories} 
                         dataReady={this.props.dataReady} 
                         covidStats={this.props.covidStats}
@@ -89,7 +89,7 @@ class Results extends Component {
                         articles={this.props.articles}
                         getStories={this.props.getStories}
                         saveStories={this.props.saveStories}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>

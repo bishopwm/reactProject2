@@ -10,7 +10,7 @@ showCovidStats =  () => {
         return specificStat.country_name.toLowerCase() === this.props.query.toLowerCase();
       });
     
-    console.log("query ready?", this.props.query, cityStat, this.props.covidStats);
+    // console.log("query ready?", this.props.query, cityStat, this.props.covidStats);
     if(this.props.query !== ""){
         return (
         <li className="list-group-item all-covid-stats">
@@ -22,7 +22,7 @@ showCovidStats =  () => {
             <p><strong>Serious/Critical: </strong>{cityStat.serious_critical}</p>
             <p><strong>Total Recovered: </strong>{cityStat.total_recovered}</p>
             <hr></hr>
-            <p id="more-link"><strong><h5>Looking for more?</h5></strong>View comphrensive stats on <a href="https://coronavirus.jhu.edu/map.html">Johns Hopkins' Resource Center</a>.</p>
+            <span id="more-link"><strong><h5>Looking for more?</h5></strong>View comphrensive stats on <a href="https://coronavirus.jhu.edu/map.html">Johns Hopkins' Resource Center</a>.</span>
         </li>)
     } else {
         let fixedStats = this.props.covidStats;

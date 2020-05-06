@@ -36,18 +36,15 @@ saveArticle = (eachStory) => {
 }
 
 showStories = () => {
-    // let imageBaseUrl = "https://static01.nyt.com/";
     let stories = this.props.stories ? this.props.stories : this.props.stories;
     console.log("nyt multimedia", this.props.stories[0].multimedia)
     return stories.map((eachStory, i) => {
-        // let multimedia = eachStory.multimedia.shift();
         return (
             <li className="list-group-item all-articles" key={i}>
                 <img alt="nyt logo" src={nytLogo} id="nyt-logo"></img>
                 <p className="article-headline"><a href={ eachStory.web_url}>{ eachStory.headline.main}</a></p>
                 <p className="article-publish-date"><strong>{ eachStory.pub_date.replace(/T.*$/,"")}</strong></p>
                 <p className="article-lead">{eachStory.lead_paragraph}</p>
-                {/* <p className="article-img"><img src={imageBaseUrl +  eachStory.multimedia.shift().url}></img>IMG</p> */}
                 <button className="btn btn-info" id="save-button" onClick={() => this.saveArticle(eachStory)}>Save</button>
             </li>
         );
@@ -90,7 +87,6 @@ removeArticle = async (i) => {
                         <h1>In the Headlines</h1>
                         <img src={(headlines)} id="headlines-img" alt=""></img>
                         <Alert show={this.state.showAlert} dismissible variant='success' onClick={this.closeAlert}>Saved</Alert>
-                        {/* {this.props.dataReady ? this.showArticles() : "Loading..." } */}
                         {this.props.dataReady ? this.showStories() : "Loading..."}
                     </ul>
                 </div>

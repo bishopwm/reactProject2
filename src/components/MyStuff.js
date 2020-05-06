@@ -26,10 +26,10 @@ class MyStuff extends Component {
                         <img alt="nyt logo" src={nytLogo} id="nyt-logo-saved"></img>
                     </div>
                     <p id="article-link">
-                        <a href={eachArticle.eachStory.web_url}>{eachArticle.eachStory.headline.main}</a>
+                        <a href={eachArticle.eachStory.web_url}>{eachArticle.eachStory.headline?.main}</a>
                     </p>
                     <p>
-                    {eachArticle.eachStory.pub_date.replace(/T.*$/,"")}
+                    {eachArticle.eachStory.pub_date?.replace(/T.*$/,"")}
                     </p>
                     <p>
                     {eachArticle.eachStory.lead_paragraph}
@@ -39,15 +39,37 @@ class MyStuff extends Component {
         })
     }
 
+    // showArticlesCell= () => {
+    //     return this.props.articles.eachStory.map((eachStory, i) => {
+    //         return (
+    //             <li className="list-group-item articles-list-item list-group-item-light" key={i}>
+    //                 <div>
+    //                     <button className="btn btn-danger" id="remove-button" onClick={() => this.removeArticle(i)}>Remove</button>
+    //                     <img alt="nyt logo" src={nytLogo} id="nyt-logo-saved"></img>
+    //                 </div>
+    //                 <p id="article-link">
+    //                     <a href={eachStory.cell.web_url}>{eachStory.cell.headline?.main}</a>
+    //                 </p>
+    //                 <p>
+    //                 {eachStory.cell.pub_date?.replace(/T.*$/,"")}
+    //                 </p>
+    //                 <p>
+    //                 {eachStory.cell.lead_paragraph}
+    //                 </p>
+    //             </li>
+    //         )
+    //     })
+    // }
+
     render() {
-        console.log("this:", this)
+        // console.log("this:", this)
         return (
             <div>
                 <div>
                     <ul className="col-8 list-group saved-articles-list">
                     <h3 id="saved-articles">My Saved Articles</h3>
-                    {/* {this.getSavedArticles()} */}
                     {this.showArticles()}
+                    {/* {this.showArticlesCell()} */}
                     </ul>
                 </div>
             </div>
